@@ -4,8 +4,13 @@ $username = "root";
 $password = "root";
 $dbname = "tombola";
 $port = '8889';
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
 
+try {
+    $conn = new mysqli($servername, $username, $password, $dbname, $port);
+} catch (Exception $e) {
+    // Prova a istanziare la connessione sull'ambiente di sviluppo Docker
+    $conn = new mysqli('db', $username, $password, $dbname, '3306');
+}
 
 if ($conn->connect_error) {
     die("Connessione fallita: " . $conn->connect_error);
@@ -15,7 +20,7 @@ if ($conn->connect_error) {
 
 
 $event = $_GET['event'];
-$response;
+$response = null;
 
 switch ($event) {
     case 0:
