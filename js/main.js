@@ -435,7 +435,7 @@ function erroreInput(statoUsername,statoCodice,stato,statoBlock){
 
     
         document.getElementsByClassName("btnScelta")[0].setAttribute("disabled",true);
-        document.getElementsByClassName("btnScelta")[1].setAttribute("disabled",true);
+        //document.getElementsByClassName("btnScelta")[1].setAttribute("disabled",true);
 
     
     document.getElementById("btnPrimary").setAttribute("disabled", true);
@@ -1685,7 +1685,7 @@ class Botteghino {
 
 const botteghino = [];
 botteghino.push(new Botteghino("standard ",4,"Le cartelle sono generate casualmente","Cartelle","Acquista la cartella vincente con quei tuoi numeri più fortunati","cartelle.jpg" ));
-botteghino.push(new Botteghino("tabellone ",3,"Seleziona i quadranti del tabellone per scegliere le cartelle","Tabellone","Compra le cartelle migliori del tabellone per vincere facilmente","tabellone.jpeg"  ));
+//botteghino.push(new Botteghino("tabellone ",3,"Seleziona i quadranti del tabellone per scegliere le cartelle","Tabellone","Compra le cartelle migliori del tabellone per vincere facilmente","tabellone.jpeg"  ));
 
 
 function sceltaTipoCartella(tipoCartella){
@@ -1956,7 +1956,7 @@ function controllaVincita(){
                     q++;
                     f = g * 10 + p + q;
                     if(botteghino[statoSceltaTipoCartella].getNumeroTabellone(f - 1) == true)c++;
-                    if(c == botteghino[statoSceltaTipoCartella].getNumeriPerPremio(premioAttuale) &&  rilevaQuadranteAcquistato(k) == false)vincitaTabellone = true;
+                    //if(c == botteghino[statoSceltaTipoCartella].getNumeriPerPremio(premioAttuale) &&  rilevaQuadranteAcquistato(k) == false)vincitaTabellone = true;
                     
                     
             
@@ -1991,12 +1991,12 @@ function controllaVincita(){
         const url2 = `server.php?event=17&id=${encodeURIComponent(codice)}&username=${encodeURIComponent(username)}&premio=${encodeURIComponent(premioAttuale)}`;
         myFetch(url2,richiestaAggiornaPremio);  
     }
-    setTimeout(function(){
-        if(vincitaTabellone == true && statoSceltaLogin == 1){
-            const url = `server.php?event=17&id=${encodeURIComponent(codice)}&username=${encodeURIComponent("Banco")}&premio=${encodeURIComponent(premioAttuale)}`;
-            myFetch(url,richiestaAggiornaPremio);  
-        }
-    },500)
+    // setTimeout(function(){
+    //     if(vincitaTabellone == true && statoSceltaLogin == 1){
+    //         const url = `server.php?event=17&id=${encodeURIComponent(codice)}&username=${encodeURIComponent("Banco")}&premio=${encodeURIComponent(premioAttuale)}`;
+    //         myFetch(url,richiestaAggiornaPremio);
+    //     }
+    // },500)
     
    
         
@@ -2025,7 +2025,7 @@ function iniziaPartita(){
     document.getElementsByClassName("colRight")[0].innerHTML = botteghino[statoSceltaTipoCartella].getCartella();
     inizializzaNumeriCartelle(statoSceltaTipoCartella);
     document.getElementsByClassName("btnScelta")[CARTELLA].disabled = true;
-    document.getElementsByClassName("btnScelta")[TABELLONE].disabled = true;
+    //document.getElementsByClassName("btnScelta")[TABELLONE].disabled = true;
     for( let i = 0; i < botteghino[statoSceltaTipoCartella].getNumeroCartelle(); i ++)document.getElementsByClassName("cartellaPronta"+botteghino[statoSceltaTipoCartella].getIdCartella(i))[0].disabled = true;
     
     statoPartita = PRONTO;
@@ -2377,7 +2377,7 @@ function inizializzaPartita(){
             document.getElementById("my-row").classList.add("opacity-100");
             document.getElementsByClassName("corpo")[0].classList.add("opacity-100");
             botteghino[CARTELLA].resetCartella();
-            botteghino[TABELLONE].resetCartella();
+            //botteghino[TABELLONE].resetCartella();
             document.getElementsByClassName("corpo")[0].innerHTML = "<h2 >Nessuna cartella acquistata</h2><p class='lead'>Prima di giocare compra subito delle cartelle e dai inizio al divertimento</p>"
             break;
         default:
@@ -2386,8 +2386,8 @@ function inizializzaPartita(){
                 sceltaOpposta = TABELLONE;
               
             }
-            botteghino[sceltaOpposta].resetCartella();
-            aggiornaBottoneTipoCartella(statoSceltaTipoCartella);
+            //botteghino[sceltaOpposta].resetCartella();
+            //aggiornaBottoneTipoCartella(statoSceltaTipoCartella);
             document.getElementsByClassName("container")[4].innerHTML = inizializzaBotteghino(statoSceltaTipoCartella);            
             break;
     }
